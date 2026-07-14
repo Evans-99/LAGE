@@ -1,0 +1,167 @@
+{
+  "window_id": 1,
+  "num_data_centers": 5,
+  "coordination_window_H": 4,
+  "state_normalization": "fixed_min_max_bounds_from_training_set",
+  "historical_summary": {
+    "mean_operating_cost": 0.58,
+    "mean_carbon_emission": 0.63,
+    "mean_sla_violation": 0.14,
+    "mean_queue_backlog": 0.46,
+    "mean_renewable_curtailment": 0.31,
+    "mean_peak_power": 0.67
+  },
+  "data_centers": [
+    {
+      "id": "DC1",
+      "electricity_price": 0.78,
+      "carbon_intensity": 0.82,
+      "flexible_backlog": 0.62,
+      "deadline_risk": 0.45,
+      "renewable_surplus": 0.08,
+      "soc": 0.48,
+      "idle_capacity": 0.28,
+      "thermal_margin": 0.51,
+      "bandwidth_margin": 0.64,
+      "voltage_margin": 0.55,
+      "branch_margin": 0.49
+    },
+    {
+      "id": "DC2",
+      "electricity_price": 0.29,
+      "carbon_intensity": 0.24,
+      "flexible_backlog": 0.38,
+      "deadline_risk": 0.22,
+      "renewable_surplus": 0.79,
+      "soc": 0.42,
+      "idle_capacity": 0.71,
+      "thermal_margin": 0.74,
+      "bandwidth_margin": 0.72,
+      "voltage_margin": 0.7,
+      "branch_margin": 0.67
+    },
+    {
+      "id": "DC3",
+      "electricity_price": 0.51,
+      "carbon_intensity": 0.47,
+      "flexible_backlog": 0.56,
+      "deadline_risk": 0.41,
+      "renewable_surplus": 0.21,
+      "soc": 0.63,
+      "idle_capacity": 0.43,
+      "thermal_margin": 0.36,
+      "bandwidth_margin": 0.61,
+      "voltage_margin": 0.58,
+      "branch_margin": 0.54
+    },
+    {
+      "id": "DC4",
+      "electricity_price": 0.66,
+      "carbon_intensity": 0.69,
+      "flexible_backlog": 0.31,
+      "deadline_risk": 0.19,
+      "renewable_surplus": 0.1,
+      "soc": 0.76,
+      "idle_capacity": 0.33,
+      "thermal_margin": 0.44,
+      "bandwidth_margin": 0.53,
+      "voltage_margin": 0.48,
+      "branch_margin": 0.42
+    },
+    {
+      "id": "DC5",
+      "electricity_price": 0.37,
+      "carbon_intensity": 0.33,
+      "flexible_backlog": 0.4,
+      "deadline_risk": 0.27,
+      "renewable_surplus": 0.55,
+      "soc": 0.51,
+      "idle_capacity": 0.6,
+      "thermal_margin": 0.68,
+      "bandwidth_margin": 0.69,
+      "voltage_margin": 0.66,
+      "branch_margin": 0.63
+    }
+  ],
+  "short_term_forecast": {
+    "task_arrival_mean": [
+      0.56,
+      0.6,
+      0.64,
+      0.7
+    ],
+    "renewable_generation_mean": [
+      0.47,
+      0.59,
+      0.72,
+      0.65
+    ],
+    "ambient_temperature_mean": [
+      0.62,
+      0.66,
+      0.7,
+      0.73
+    ],
+    "electricity_price_mean": [
+      0.52,
+      0.57,
+      0.63,
+      0.69
+    ],
+    "carbon_intensity_mean": [
+      0.5,
+      0.54,
+      0.59,
+      0.64
+    ]
+  },
+  "global_security": {
+    "minimum_voltage_margin": 0.42,
+    "minimum_branch_capacity_margin": 0.38,
+    "maximum_sla_risk": 0.45,
+    "minimum_thermal_margin": 0.36
+  },
+  "constraints": {
+    "sla_is_hard_priority": true,
+    "thermal_is_hard_priority": true,
+    "soc_is_hard_priority": true,
+    "distribution_security_is_hard_priority": true,
+    "valid_link_mask": [
+      [
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        0
+      ]
+    ]
+  }
+}

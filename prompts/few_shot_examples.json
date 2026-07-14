@@ -1,0 +1,224 @@
+[
+  {
+    "name": "renewable_surplus_case",
+    "input": {
+      "num_data_centers": 3,
+      "data_centers": [
+        {
+          "id": "DC1",
+          "price": 0.72,
+          "carbon": 0.8,
+          "backlog": 0.35,
+          "renewable_surplus": 0.05,
+          "thermal_margin": 0.55,
+          "soc": 0.58,
+          "idle_capacity": 0.3
+        },
+        {
+          "id": "DC2",
+          "price": 0.31,
+          "carbon": 0.25,
+          "backlog": 0.42,
+          "renewable_surplus": 0.82,
+          "thermal_margin": 0.72,
+          "soc": 0.44,
+          "idle_capacity": 0.68
+        },
+        {
+          "id": "DC3",
+          "price": 0.55,
+          "carbon": 0.48,
+          "backlog": 0.28,
+          "renewable_surplus": 0.2,
+          "thermal_margin": 0.49,
+          "soc": 0.65,
+          "idle_capacity": 0.36
+        }
+      ],
+      "global_security": {
+        "min_voltage_margin": 0.61,
+        "min_branch_margin": 0.58,
+        "max_sla_risk": 0.3
+      },
+      "valid_link_mask": [
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0
+        ]
+      ]
+    },
+    "output": {
+      "operation_mode": "renewable_follow",
+      "reward_scores": {
+        "electricity_cost": 2.0,
+        "carbon_emission": 3.0,
+        "sla_backlog": 2.0,
+        "renewable_utilization": 2.5,
+        "peak_power": 0.5
+      },
+      "policy_prior": {
+        "DC1": {
+          "migration": -0.6,
+          "server_activation": -0.3,
+          "cooling_setpoint": 0.1,
+          "ess_charge": -0.4,
+          "ess_discharge": 0.5
+        },
+        "DC2": {
+          "migration": 0.7,
+          "server_activation": 0.5,
+          "cooling_setpoint": 0.2,
+          "ess_charge": 0.6,
+          "ess_discharge": -0.4
+        },
+        "DC3": {
+          "migration": -0.1,
+          "server_activation": 0.0,
+          "cooling_setpoint": 0.0,
+          "ess_charge": 0.1,
+          "ess_discharge": 0.0
+        }
+      },
+      "coordination_scores": [
+        [
+          0.0,
+          0.9,
+          0.35
+        ],
+        [
+          0.9,
+          0.0,
+          0.55
+        ],
+        [
+          0.35,
+          0.55,
+          0.0
+        ]
+      ],
+      "brief_reason": "DC2 has low price, low carbon intensity, renewable surplus, and idle computing capacity. Flexible workload should preferentially coordinate toward DC2."
+    }
+  },
+  {
+    "name": "thermal_and_backlog_case",
+    "input": {
+      "num_data_centers": 3,
+      "data_centers": [
+        {
+          "id": "DC1",
+          "price": 0.42,
+          "carbon": 0.45,
+          "backlog": 0.88,
+          "renewable_surplus": 0.2,
+          "thermal_margin": 0.6,
+          "soc": 0.52,
+          "idle_capacity": 0.4
+        },
+        {
+          "id": "DC2",
+          "price": 0.38,
+          "carbon": 0.4,
+          "backlog": 0.5,
+          "renewable_surplus": 0.25,
+          "thermal_margin": 0.12,
+          "soc": 0.47,
+          "idle_capacity": 0.35
+        },
+        {
+          "id": "DC3",
+          "price": 0.48,
+          "carbon": 0.43,
+          "backlog": 0.32,
+          "renewable_surplus": 0.15,
+          "thermal_margin": 0.75,
+          "soc": 0.55,
+          "idle_capacity": 0.7
+        }
+      ],
+      "global_security": {
+        "min_voltage_margin": 0.49,
+        "min_branch_margin": 0.46,
+        "max_sla_risk": 0.82
+      },
+      "valid_link_mask": [
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          0
+        ]
+      ]
+    },
+    "output": {
+      "operation_mode": "backlog_drain",
+      "reward_scores": {
+        "electricity_cost": 1.0,
+        "carbon_emission": 1.0,
+        "sla_backlog": 6.0,
+        "renewable_utilization": 0.5,
+        "peak_power": 1.5
+      },
+      "policy_prior": {
+        "DC1": {
+          "migration": 0.4,
+          "server_activation": 0.8,
+          "cooling_setpoint": -0.1,
+          "ess_charge": -0.5,
+          "ess_discharge": 0.5
+        },
+        "DC2": {
+          "migration": -0.7,
+          "server_activation": -0.4,
+          "cooling_setpoint": -0.8,
+          "ess_charge": -0.2,
+          "ess_discharge": 0.1
+        },
+        "DC3": {
+          "migration": 0.6,
+          "server_activation": 0.7,
+          "cooling_setpoint": 0.1,
+          "ess_charge": -0.2,
+          "ess_discharge": 0.2
+        }
+      },
+      "coordination_scores": [
+        [
+          0.0,
+          0.25,
+          0.88
+        ],
+        [
+          0.25,
+          0.0,
+          0.8
+        ],
+        [
+          0.88,
+          0.8,
+          0.0
+        ]
+      ],
+      "brief_reason": "DC1 has high backlog, while DC2 has a small thermal margin. DC3 should provide the main coordination capacity."
+    }
+  }
+]

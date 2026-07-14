@@ -1,0 +1,85 @@
+{
+  "operation_mode": "renewable_follow",
+  "reward_scores": {
+    "electricity_cost": 2.0,
+    "carbon_emission": 3.2,
+    "sla_backlog": 2.5,
+    "renewable_utilization": 1.8,
+    "peak_power": 0.5
+  },
+  "policy_prior": {
+    "DC1": {
+      "migration": -0.4,
+      "server_activation": -0.2,
+      "cooling_setpoint": 0.25,
+      "ess_charge": -0.6,
+      "ess_discharge": 0.7
+    },
+    "DC2": {
+      "migration": 0.55,
+      "server_activation": 0.45,
+      "cooling_setpoint": 0.1,
+      "ess_charge": 0.5,
+      "ess_discharge": -0.3
+    },
+    "DC3": {
+      "migration": -0.1,
+      "server_activation": 0.1,
+      "cooling_setpoint": -0.25,
+      "ess_charge": -0.1,
+      "ess_discharge": 0.2
+    },
+    "DC4": {
+      "migration": -0.35,
+      "server_activation": -0.15,
+      "cooling_setpoint": -0.2,
+      "ess_charge": -0.3,
+      "ess_discharge": 0.45
+    },
+    "DC5": {
+      "migration": 0.4,
+      "server_activation": 0.3,
+      "cooling_setpoint": 0.15,
+      "ess_charge": 0.35,
+      "ess_discharge": -0.2
+    }
+  },
+  "coordination_scores": [
+    [
+      0.0,
+      0.82,
+      0.21,
+      0.15,
+      0.64
+    ],
+    [
+      0.82,
+      0.0,
+      0.73,
+      0.18,
+      0.31
+    ],
+    [
+      0.21,
+      0.73,
+      0.0,
+      0.77,
+      0.24
+    ],
+    [
+      0.15,
+      0.18,
+      0.77,
+      0.0,
+      0.69
+    ],
+    [
+      0.64,
+      0.31,
+      0.24,
+      0.69,
+      0.0
+    ]
+  ],
+  "brief_reason": "Prioritize low-carbon processing and direct flexible workload toward DC2 and DC5, which have renewable surplus and sufficient capacity."
+}

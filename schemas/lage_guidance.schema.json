@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LAGE LLM Guidance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "operation_mode",
+    "reward_scores",
+    "policy_prior",
+    "coordination_scores",
+    "brief_reason"
+  ],
+  "properties": {
+    "operation_mode": {
+      "type": "string",
+      "enum": [
+        "balanced",
+        "carbon_first",
+        "cost_first",
+        "backlog_drain",
+        "renewable_follow",
+        "thermal_safe"
+      ]
+    },
+    "reward_scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "electricity_cost",
+        "carbon_emission",
+        "sla_backlog",
+        "renewable_utilization",
+        "peak_power"
+      ],
+      "properties": {
+        "electricity_cost": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 10.0
+        },
+        "carbon_emission": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 10.0
+        },
+        "sla_backlog": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 10.0
+        },
+        "renewable_utilization": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 10.0
+        },
+        "peak_power": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 10.0
+        }
+      }
+    },
+    "policy_prior": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "migration",
+          "server_activation",
+          "cooling_setpoint",
+          "ess_charge",
+          "ess_discharge"
+        ],
+        "properties": {
+          "migration": {
+            "type": "number",
+            "minimum": -1.0,
+            "maximum": 1.0
+          },
+          "server_activation": {
+            "type": "number",
+            "minimum": -1.0,
+            "maximum": 1.0
+          },
+          "cooling_setpoint": {
+            "type": "number",
+            "minimum": -1.0,
+            "maximum": 1.0
+          },
+          "ess_charge": {
+            "type": "number",
+            "minimum": -1.0,
+            "maximum": 1.0
+          },
+          "ess_discharge": {
+            "type": "number",
+            "minimum": -1.0,
+            "maximum": 1.0
+          }
+        }
+      }
+    },
+    "coordination_scores": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        }
+      }
+    },
+    "brief_reason": {
+      "type": "string",
+      "maxLength": 400
+    }
+  }
+}

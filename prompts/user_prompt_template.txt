@@ -1,0 +1,9 @@
+Generate the LAGE coordination signals for the following normalized operating context.
+
+All normalized continuous variables are in [0, 1] unless otherwise stated.
+Use the exact data-center identifiers appearing in the input.
+Respect the valid_link_mask.
+Return JSON only.
+
+CONTEXT:
+{{CONTEXT_JSON}}

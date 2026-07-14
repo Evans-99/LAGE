@@ -1,0 +1,54 @@
+model:
+  model_family: "Qwen-7B"
+  model_name_or_path: "Qwen/Qwen-7B-Chat"
+  pretrained: true
+  fine_tuned: false
+  prompting_mode: "few-shot"
+  num_few_shot_examples: 2
+  trust_remote_code: true
+  device_map: "auto"
+  torch_dtype: "float16"
+  load_in_4bit: false
+
+generation:
+  do_sample: false
+  temperature: 0.0
+  top_p: 1.0
+  max_new_tokens: 1024
+  repetition_penalty: 1.0
+  seed: 42
+
+coordinator:
+  coordination_window_H: 4
+  top_k_neighbors: 2
+  max_retries: 3
+  symmetrize_graph: false
+  reward_score_min: 0.0
+  reward_score_max: 10.0
+  policy_prior_min: -1.0
+  policy_prior_max: 1.0
+  coordination_score_min: 0.0
+  coordination_score_max: 1.0
+  prior_std: 0.20
+  epsilon: 1.0e-8
+
+signal_order:
+  reward_components:
+    - "electricity_cost"
+    - "carbon_emission"
+    - "sla_backlog"
+    - "renewable_utilization"
+    - "peak_power"
+  policy_prior_actions:
+    - "migration"
+    - "server_activation"
+    - "cooling_setpoint"
+    - "ess_charge"
+    - "ess_discharge"
+  operation_modes:
+    - "balanced"
+    - "carbon_first"
+    - "cost_first"
+    - "backlog_drain"
+    - "renewable_follow"
+    - "thermal_safe"

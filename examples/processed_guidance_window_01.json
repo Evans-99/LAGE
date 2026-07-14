@@ -1,0 +1,132 @@
+{
+  "operation_mode": "renewable_follow",
+  "operation_mode_id": 4,
+  "operation_mode_one_hot": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0
+  ],
+  "reward_component_order": [
+    "electricity_cost",
+    "carbon_emission",
+    "sla_backlog",
+    "renewable_utilization",
+    "peak_power"
+  ],
+  "reward_weights": [
+    0.2,
+    0.32,
+    0.25,
+    0.18,
+    0.05
+  ],
+  "policy_prior_action_order": [
+    "migration",
+    "server_activation",
+    "cooling_setpoint",
+    "ess_charge",
+    "ess_discharge"
+  ],
+  "policy_prior_mean": {
+    "DC1": [
+      -0.4,
+      -0.2,
+      0.25,
+      -0.6,
+      0.7
+    ],
+    "DC2": [
+      0.55,
+      0.45,
+      0.1,
+      0.5,
+      -0.3
+    ],
+    "DC3": [
+      -0.1,
+      0.1,
+      -0.25,
+      -0.1,
+      0.2
+    ],
+    "DC4": [
+      -0.35,
+      -0.15,
+      -0.2,
+      -0.3,
+      0.45
+    ],
+    "DC5": [
+      0.4,
+      0.3,
+      0.15,
+      0.35,
+      -0.2
+    ]
+  },
+  "policy_prior_std": 0.2,
+  "coordination_weights": [
+    [
+      0.0,
+      0.5616438356164384,
+      0.0,
+      0.0,
+      0.4383561643835617
+    ],
+    [
+      0.5290322580645161,
+      0.0,
+      0.4709677419354839,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.48666666666666664,
+      0.0,
+      0.5133333333333333,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.5273972602739726,
+      0.0,
+      0.4726027397260274
+    ],
+    [
+      0.48120300751879697,
+      0.0,
+      0.0,
+      0.5187969924812029,
+      0.0
+    ]
+  ],
+  "top_k_neighbors": {
+    "DC1": [
+      "DC2",
+      "DC5"
+    ],
+    "DC2": [
+      "DC1",
+      "DC3"
+    ],
+    "DC3": [
+      "DC4",
+      "DC2"
+    ],
+    "DC4": [
+      "DC3",
+      "DC5"
+    ],
+    "DC5": [
+      "DC4",
+      "DC1"
+    ]
+  },
+  "used_fallback": false,
+  "brief_reason": "Prioritize low-carbon processing and direct flexible workload toward DC2 and DC5, which have renewable surplus and sufficient capacity."
+}
